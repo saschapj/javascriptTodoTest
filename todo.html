@@ -1,0 +1,88 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titel</title>
+  </head>
+  <body>    
+    <h1>Todo App Javascript Test</h1>
+
+    <table id="taskTable">
+        <tr>
+            <th>Aufgabe</th>
+            <th>Bearbeiten</th>
+            <th>Entfernen</th>
+        </tr>
+
+
+    </table>
+
+    <button type="button" onclick="newTask()">Neue Aufgabe</button>
+
+    <script>
+        
+        function  newTask() {            
+            let newTask = prompt("Was hast du zu erledigen?");
+
+            let taskTable = document.getElementById("taskTable");
+            
+            let tr = taskTable.insertAdjacentElement('afterend',document.createElement("tr"));
+            let td1 = tr.insertAdjacentElement('beforeend',document.createElement("td"));            
+            let td2 = tr.insertAdjacentElement('beforeend',document.createElement("td"));
+            let td3 = tr.insertAdjacentElement('beforeend',document.createElement("td"));
+           
+            td1.appendChild(document.createTextNode(newTask));
+
+            let btnEdit = document.createElement("button");
+            btnEdit.innerHTML = "Edit";
+            btnEdit.type="button";
+            btnEdit.name="btnEdit";
+            btnEdit.onclick= function() {
+                let newTaskTitle = prompt("Namen ändern")
+                
+                let td = btnEdit.parentElement;
+                let tr = td.parentElement;
+
+                let firstTd = tr.firstChild;
+                firstTd.innerHTML = newTaskTitle;
+                
+            }
+
+            console.log(btnEdit);
+            td2.appendChild(btnEdit);
+
+            let btnRemove = document.createElement("button");
+            btnRemove.innerHTML =  "Remove";
+            btnRemove.type="button";
+            btnRemove.name="btnRemove";
+
+            btnRemove.onclick= function() {
+                let td = btnRemove.parentElement;
+                let tr = td.parentElement;
+                
+                console.log(tr)
+                tr.remove();
+            }
+
+            td3.appendChild(btnRemove);
+            
+            /* let newTr = document.createElement("tr");
+            let newLiContent = newLi.appendChild(document.createTextNode(newTask));            
+            taskList.appendChild(newLi); */
+
+
+        }
+
+        function test(){
+            console.log('test')
+        }
+
+
+
+    </script>
+  </body>
+</html>
